@@ -8,15 +8,20 @@
 
 <body>
     <h1>the catcollector's cats</h1>
-    <hr /> {% extends 'base.html' %} {% load static %} {% block content %} {% for cat in cats %}
-    <a href="/cats/{{cat.id}}">
+    <hr /> <a href="/cats/create">Add a New Cat!</a> {% extends 'base.html' %} {% load static %} {% block content %}
+    <a href="/cats/create">Add a New Cat!</a>
+    <hr /> {% for cat in cats %}
+    <a href='/cats/{{cat.id}}'>
         <p>Name: {{ cat.name }}</p>
-        {% if cat.age > 0 %}
-        <p>Age: {{ cat.age }}</p>
-        {% else %}
-        <p>Age: Kitten</p>
-        {% endif %}
     </a>
+    <a href='/user/{{cat.user.username}}'>
+        <p>Adopted By: {{cat.user.username}}</p>
+    </a>
+    {% if cat.age > 0 %}
+    <p>Age: {{ cat.age }}</p>
+    {% else %}
+    <p>Age: Kitten</p>
+    {% endif %}
     <hr /> {% endfor %} {% endblock %}
     <footer>All Rights Reserved, catcollector 2018</footer>
 </body>
